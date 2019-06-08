@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "918066726730",
+    "firebase_url": "https://artisapp-242602.firebaseio.com",
+    "project_id": "artisapp-242602",
+    "storage_bucket": "artisapp-242602.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918066726730:android:7d6e9413af9e5981",
+        "android_client_info": {
+          "package_name": "com.example.artis_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918066726730-vkcvcih0mbg1hjkkqao2lk10aqnqrug0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.artis_app",
+            "certificate_hash": "ee1a73df2c11e7b743ed8890327a825c0080b3db"
+          }
+        },
+        {
+          "client_id": "918066726730-u5i6h5eerdo86ahq6dd5kf5ek6ki78cb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Ik24GEwdCbXGmcK8zHwq4VZpZkxbzJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918066726730-u5i6h5eerdo86ahq6dd5kf5ek6ki78cb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

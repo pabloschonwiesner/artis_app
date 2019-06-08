@@ -1,0 +1,11 @@
+{
+  "titleApp": "Artis App",
+  "loginNotSignedIn": "You are not currently signed in.",
+  "loginSignedIn": "Signed in successfully.",
+  "loginButtonSignOut": "SIGN OUT",
+  "loginButtonSignIn": "SIGN IN",
+  "loginButtonRefresh": "REFRESH"
+  }
+  
+
+
