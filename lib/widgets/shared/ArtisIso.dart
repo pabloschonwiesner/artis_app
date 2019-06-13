@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+/// Clase que crea el isotipo de Artis
 class ArtisIso extends StatelessWidget {
   final double aFontSize;
 

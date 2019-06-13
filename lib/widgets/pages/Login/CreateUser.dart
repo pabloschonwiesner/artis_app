@@ -1,3 +1,4 @@
+import 'package:artis_app/widgets/shared/ArtisDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:artis_app/widgets/shared/ArtisLogo.dart';
 import 'package:artis_app/widgets/shared/ArtisIso.dart';
@@ -6,33 +7,68 @@ import 'package:artis_app/utils/my_date_picker.dart' as myDatePicker;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:artis_app/utils/validators.dart';
 
-
+/// Clase que crea la pantalla de creación de un nuevo usuario
+/// 
+/// Crea una pantalla con un formulario para completar por el nuevo usuario. Tiene validación de campos obligatorios
 class CreateUser extends StatefulWidget {
   @override
   _CreateUserState createState() => _CreateUserState();
 }
 
 class _CreateUserState extends State<CreateUser> {
+  /// GlobalKey del formulario de creación de usuario
   GlobalKey<FormState> _keyFormCreateUser = GlobalKey<FormState>();
+  
+  /// GlobalKey del scaffold de la pantalla de creación de usuario
   GlobalKey<ScaffoldState> _keyScaffoldCreateUser = GlobalKey<ScaffoldState>();
+
+  /// Controlador para el campo name del formulario
   TextEditingController _nameController = TextEditingController();
+
+  /// Controlador para el campo surname del formulario
   TextEditingController _surnameController = TextEditingController();
+
+  /// Controlador para el campo pseudonym del formulario
   TextEditingController _pseudonymController = TextEditingController();
+
+  /// Controlador para el campo occupation del formulario
   TextEditingController _occupationController = TextEditingController();
+
+  /// Controlador para el campo email del formulario
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();  
+
+  /// Controlador para el campo password del formulario
+  TextEditingController _passwordController = TextEditingController(); 
+
+  /// Controlador para el campo birthdate del formulario 
   TextEditingController _birthdateController = TextEditingController();  
+
+  /// Controlador para el campo facebook del formulario
   TextEditingController _facebookController = TextEditingController(); 
+
+  /// Controlador para el campo instagram del formulario
   TextEditingController _instagramController = TextEditingController(); 
+
+  /// Controlador para el campo twitter del formulario
   TextEditingController _twitterController = TextEditingController(); 
   
-  
+  /// Propiedad privada de tipo String para guardar el pais seleccionado por el usuario
   String _selectionCountry;
+
+  /// Propiedad privada de tipo String para guardar el idioma seleccionado por el usuario
   String _selectionLanguage;
+
+  /// Lista de paises disponibles para seleccionar por el usuario
   List<String> _countries = ['Argentina', 'Brasil', 'Chile', 'Colombia', 'España', 'Estados Unidos', 'Italia', 'Portugal', 'Suiza'];
-  List<String> _languages = ['Alemán', 'Español', 'Inglés', 'Italiano', 'Portugues'];
+
+  /// Lista de lenguajes dispoibles para seleccionar por el usuario
+  List<String> _languages = ['Español', 'Inglés', 'Italiano'];
 
 
+  /// Función para seleccionar la fecha de nacimiento
+  /// 
+  /// Esta función muestra un DatePicker modificado para el proyecto que se llama myDatePicker. Tiene la capacidad
+  /// de cerrarse solo al seleccionar una fecha sin la necesidad que el usuario acepte la pantalla
   Future<DateTime> _selectDate() async {
     DateTime picked = await myDatePicker.showDatePicker(
       context: context,
@@ -45,12 +81,19 @@ class _CreateUserState extends State<CreateUser> {
     return picked;
   }
 
+  /// Función que guarda los datos del usuario creado en el formulario y redirije a la landing correspondiente
+  /// 
+  /// Por el momento solo muestra un SnackBar, cuando esté disponible el backend guardará en el mismo antes de redirigir a su landing
   void _saveProfile() {
     String texto = """${_nameController.text} - ${_surnameController.text} - ${_pseudonymController.text} - ${_selectionCountry} - ${_selectionLanguage} - ${_occupationController.text} 
     - ${_emailController.text} - ${_passwordController.text} - ${_birthdateController.text} - ${_facebookController.text} - ${_instagramController.text} - ${_twitterController.text}""";
     _keyScaffoldCreateUser.currentState.showSnackBar(SnackBar(content: Text(texto)));
-     Navigator.pushNamed(context, '/landing');
+     Navigator.pushNamed(context, '/landingLogged');
   } 
+
+  /// Función que valida el formulario
+  /// 
+  /// Función privada que ejecuta la validación de cada campo del formulario
 
   void _validateFormUser() {
     if(_keyFormCreateUser.currentState.validate()) {
@@ -233,7 +276,8 @@ class _CreateUserState extends State<CreateUser> {
         )
       )
       ],
-    )
+    ),
+    drawer: ArtisDrawer(),
   );
  }
 

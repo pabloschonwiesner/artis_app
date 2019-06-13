@@ -10,5 +10,8 @@ export 'package:artis_app/widgets/pages/Login/Login.dart';
 import 'package:artis_app/widgets/pages/Login/CreateUser.dart';
 export 'package:artis_app/widgets/pages/Login/CreateUser.dart';
 
-export 'package:artis_app/widgets/pages/Landing/Landing.dart';
-import 'package:artis_app/widgets/pages/Landing/Landing.dart';
+export 'package:artis_app/widgets/pages/Landing/LandingLogged.dart';
+import 'package:artis_app/widgets/pages/Landing/LandingLogged.dart';
+
+export 'package:artis_app/widgets/pages/Landing/LandingNoLogged.dart';
+import 'package:artis_app/widgets/pages/Landing/LandingNoLogged.dart';

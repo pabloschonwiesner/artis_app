@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:artis_app/widgets/pages/Pages.dart';
 
-/**
- *final Map<String, WidgetBuilder> routes
- *
- *Todas las rutas de la applicacion
- */
+/// Rutas de la app
 
 final Map<String, WidgetBuilder> routes = {
   '/': (context) => Splash(),
   '/login': (context) => Login(),
   '/createUser': (context) => CreateUser(),
-  '/landing': (context) => Landing()
+  '/landingLogged': (context) => LandingLogged(),
+  '/landingNoLogged': (context) => LandingNoLogged()
 };

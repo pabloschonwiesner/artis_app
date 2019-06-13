@@ -1,23 +1,44 @@
+import 'package:artis_app/blocs/blocLogin.dart';
+import 'package:artis_app/widgets/shared/ArtisDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class Landing extends StatefulWidget {
+
+/// Clase que crea página de inicio para el usuario logueado
+/// 
+/// Escucha los datos del usuario logueado en blocLogin para mostrar un SnackBar
+/// con los datos del usuario, no importa el método que haya utilizado para acceder
+class LandingLogged extends StatefulWidget {
   @override
   _LandingState createState() => new _LandingState();
  }
-class _LandingState extends State<Landing> {
+class _LandingState extends State<LandingLogged> {
+
+  /// String que guarda ruta a imagen temporal
   String baseImagesUrl = 'https://image.tmdb.org/t/p/';
+
+  /// Lista de Strings que provee los accesos del usuario logueado
   List<String> items = ['Mi Perfil', 'Noticias', 'Mensajes', 'Eventos', 'La Ruta del Café'];
+
+  /// GlobalKey ScaffoldState que provee la capacidad de seleccionar el scaffold para agregar un SnackBar
+  GlobalKey<ScaffoldState> _keyScaffoldLandigLogged = GlobalKey<ScaffoldState>();
+  String text;
 
   @override
   void initState() {
     super.initState();
-    
+    blocLogin.userLogged.listen((data) {
+      text = 'Usuario logueado: ${data.origen} - ${data.nombre} - ${data.apellido} - ${data.email} - ${data.id} ';
+      _keyScaffoldLandigLogged.currentState.showSnackBar(SnackBar(content: Text(text)));
+    });
   }
 
 
-
+  /// Función que crea los accesos para el usuario logueado
+  /// 
+  /// Esta función privada crea un contenedor con un carrousel que contiene todos los accesos disponibles 
+  /// para el usuario logueado.
   Widget _buildAccess() => Container(
     height: 180,
     child: CarouselSlider(
@@ -40,6 +61,11 @@ class _LandingState extends State<Landing> {
   )
   );
 
+
+  /// Función que crea cada uno de los accesos del usuario logueado
+  /// 
+  /// Esta función privada recibe un String item y un IconData icon para crear cada uno de los 
+  /// items de acceso para el usuario logueado. El ancho de cada item es el 60% de la pantalla
   Widget _buildAccessItem(String item, IconData icon) {
     double _widthCard = MediaQuery.of(context).size.width * 0.6;
 
@@ -68,6 +94,10 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea un avatar circular
+  /// 
+  /// Esta función privada recibe un String url con la ruta a la imagen de perfil y es contenida por
+  /// un CircleAvatar con un radio de 30 unidades.
   Widget _myCircleAvatar(String url) {
     return CircleAvatar(
       backgroundImage: NetworkImage(url),
@@ -75,6 +105,11 @@ class _LandingState extends State<Landing> {
     );
   }
 
+
+  /// Función que crea los datos de los coffeelovers
+  /// 
+  /// Esta función privada recibe un int catas que es el valor a mostrar para cada coffeelover como 
+  /// dato dinamico que proviene de la llamada http.
   Widget _coffeeLoverData(int catas) {
     return Column(
       children: <Widget>[
@@ -100,6 +135,10 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea los datos de los baristas
+  /// 
+  /// Esta función privada recibe un int catas, int experiences, int formations que son los valores a mostrar para cada baristas como 
+  /// dato dinamico que proviene de la llamada http.
   Widget _baristaData(int catas, int experiences, int formations) {
     return Padding(
       padding: EdgeInsets.only(left: 10),
@@ -178,6 +217,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea un coffeelover
+  /// 
+  /// Esta función privada crea una Card con el avatar y la data de un coffeelover
   Widget _coffeeLover() {
     return Card(
       elevation: 4,
@@ -194,6 +236,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea un barista
+  /// 
+  /// Esta función privada crea una Card con el avatar y la data de un barista
   Widget _barista() {
     return Card(      
       elevation: 4,
@@ -210,6 +255,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea una cafetería
+  /// 
+  /// Esta función privada crea un Container que mustra una imagen de la cafetería y datos de la misma
   Widget _coffeeShops() {
     final card =  Container(
       color: Colors.white,
@@ -251,6 +299,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea un tostador
+  /// 
+  /// Esta función privada crea un Container que mustra una imagen del tostador y datos del mismo
   Widget _coffeeRoasters() {
     final card = Card(  
       margin: EdgeInsets.only(right: 20, bottom: 20),
@@ -277,7 +328,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
-
+  /// Función que crea una lista de coffeelovers
+  /// 
+  /// Esta función privada crea una lista de coffeelover que provienen de una llamada http
   Widget _buildCoffeeLoversList() {
     MediaQueryData data;
     data = MediaQuery.of(context);
@@ -313,6 +366,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea una lista de baristas
+  /// 
+  /// Esta función privada crea una lista de baristas que provienen de una llamada http
   Widget _buildBaristasList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
@@ -346,6 +402,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea una lista de cafeterías
+  /// 
+  /// Esta función privada crea una lista de cafeterías que provienen de una llamada http
   Widget _buildCoffeeShopsList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
@@ -379,6 +438,9 @@ class _LandingState extends State<Landing> {
     );
   }
 
+  /// Función que crea una lista de tostadores
+  /// 
+  /// Esta función privada crea una lista de tostadores que provienen de una llamada http
   Widget _buildRoastersList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
@@ -413,9 +475,9 @@ class _LandingState extends State<Landing> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context) {    
    return Scaffold(
+    key: _keyScaffoldLandigLogged,
      backgroundColor: Theme.of(context).backgroundColor,
      appBar: AppBar(
        title: Text('Panel del usuario'),
@@ -470,7 +532,8 @@ class _LandingState extends State<Landing> {
            SizedBox(height: 40)
          ],
        ),
-     )
+     ),
+     drawer: ArtisDrawer(),
    );
   }
 }

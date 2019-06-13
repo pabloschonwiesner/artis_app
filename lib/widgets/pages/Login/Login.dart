@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-// import 'package:artis_app/widgets/pages/Login/FacebookSignInButton.dart';
+import 'package:artis_app/widgets/pages/Login/FacebookSignInButton.dart';
 import 'package:artis_app/widgets/pages/Login/GoogleSignInButton.dart';
-import 'package:artis_app/widgets/pages/Login/InstagramSignInButton.dart';
+// import 'package:artis_app/widgets/pages/Login/InstagramSignInButton.dart';
 import 'package:artis_app/widgets/pages/Login/UserPassSignIn.dart';
 import 'package:artis_app/widgets/shared/ArtisLogo.dart';
 import 'package:artis_app/widgets/shared/ArtisIso.dart';
 
+
+/// Clase que crea la pantalla de login de la App
 class Login extends StatelessWidget {
   
 
@@ -28,19 +30,19 @@ class Login extends StatelessWidget {
                 child: ArtisLogo(aWidth: 100),
               ),
               ArtisIso(aFontSize: 20),
-              // SizedBox(height: 10,),
+              SizedBox(height: 10,),
               UserPassSignIn(),
               SizedBox(height: 30,),
               GoogleSignInButton(),
               SizedBox(height: 15,),
-              // FacebookSignInButton(), 
-              // SizedBox(height: 15,),
-              InstagramSignInButton(),
-              SizedBox(height: 15),
+              FacebookSignInButton(), 
+              SizedBox(height: 15,),
+              // InstagramSignInButton(),
+              // SizedBox(height: 15),
               GestureDetector(
                 onTap: () {
                   print('Ingresar como no registrado');
-                  Navigator.pushNamed(context, '/landing');
+                  Navigator.pushNamed(context, '/landingNoLogged');
                 },
                 child: Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 60),

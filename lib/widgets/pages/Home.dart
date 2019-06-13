@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:artis_app/locale/AppLang.dart';
 
+
+/// Clase que crea la estructura inicial del soft
 class Home extends StatelessWidget {
 
   @override

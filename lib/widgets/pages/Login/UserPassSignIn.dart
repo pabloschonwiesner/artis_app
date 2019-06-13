@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:artis_app/utils/validators.dart';
 
+
+/// Clase que crea el formulario para acceder a la app con email y contraseña
 class UserPassSignIn extends StatefulWidget {
   @override
   _UserPassSignInState createState() => new _UserPassSignInState();
@@ -12,13 +14,15 @@ class _UserPassSignInState extends State<UserPassSignIn> {
   GlobalKey<FormState> _keyFormSignIn = GlobalKey<FormState>();
   GlobalKey<FormState> _keyFormUserSignIn = GlobalKey<FormState>();
   
+
+  /// boton que cancela la acción de loguear
   void _cancelarRecoverPass() {
     print('UserPassSignIn: Boton cancelar');
     Navigator.pop(context);
   }
 
-  void _aceptarRecoverPass() {
-    
+  /// Función privada que valida el formulario de login y redirige a la pantalla de login
+  void _aceptarRecoverPass() {    
     if(_keyFormSignIn.currentState.validate()) {
       print('UserPassSignIn: Boton aceptar: ${_textControllerRecoverPass.text}');
       _textControllerRecoverPass.text = '';
@@ -27,6 +31,7 @@ class _UserPassSignInState extends State<UserPassSignIn> {
   }
 
 
+  /// Función privada que muestra un mensaje con un campo para ingresar el emiil por el usuario
   Future _alertDialogRecoverPass() {
     return showDialog(      
       context: context,
@@ -119,7 +124,7 @@ class _UserPassSignInState extends State<UserPassSignIn> {
                 if(_keyFormUserSignIn.currentState.validate()) {
                   print('Sign in');
                   // aca tiene que redirigir a las landin pages que corresponda
-                  Navigator.pushNamed(context, '/landing');
+                  Navigator.pushNamed(context, '/landingLogged');
                 } else {
                   print('Sign in invalid');
                 }

@@ -1,7 +1,9 @@
+import 'package:artis_app/blocs/blocLogin.dart';
+import 'package:artis_app/models/UserModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-
+/// Propiedad privada del tipo GoogleSignIn con configuración para acceder al login de Google
 GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
     'email',
@@ -9,22 +11,29 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
-Future<void> _handleSignIn() async {
+
+/// Función que llama al login de Google y redirige si es válido
+  /// 
+  /// Esta función utiliza la API de Google para lanzar una pantalla de login y validar si corresponde a
+  /// un usuario registrado. Si no esta registrado o no valida, no hace nada. Si existe toma los datos del usuario,
+  /// los guarda en blocLogin y redirige a la pantalla de inicio de todo usuario logueado.
+Future<void> _handleSignIn(BuildContext context) async {
     try {
       await _googleSignIn.signIn();
-      print("""Signed in: \n 
-      id: ${_googleSignIn.currentUser.id}
-      nombre: ${_googleSignIn.currentUser.displayName.split(" ")[0]}
-      apellido: ${_googleSignIn.currentUser.displayName.split(" ")[1]}
-      email: ${_googleSignIn.currentUser.email}
-      pathFoto: ${_googleSignIn.currentUser.photoUrl}
-      domain: ${_googleSignIn.hostedDomain}
-      """);
+      String id = _googleSignIn.currentUser.id;
+      String nombre = _googleSignIn.currentUser.displayName.split(" ")[0];
+      String apellido = _googleSignIn.currentUser.displayName.split(" ")[1];
+      String email = _googleSignIn.currentUser.email;
+      final newUser = UserModel(id: id, origen: 'Google', nombre: nombre, apellido: apellido, email: email);
+      blocLogin.changeUser(newUser);
+      blocLogin.changeLogged(true);
+      Navigator.pushNamed(context, '/landingLogged');
     } catch (error) {
       print(error);
     }
   }
 
+/// Clase que crea el boton y la lógica de login de Google
 class GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -61,7 +70,7 @@ class GoogleSignInButton extends StatelessWidget {
       ),
       onPressed: () {
         print('Google');
-        _handleSignIn();
+        _handleSignIn(context);
       },
     );
   }

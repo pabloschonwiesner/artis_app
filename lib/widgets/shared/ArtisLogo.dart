@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Clase que crea el logotipo de Artis
 class ArtisLogo extends StatelessWidget {
   final double aWidth;
 
