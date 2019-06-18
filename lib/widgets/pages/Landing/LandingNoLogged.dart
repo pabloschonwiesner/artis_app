@@ -1,3 +1,4 @@
+import 'package:artis_app/locale/AppLang.dart';
 import 'package:artis_app/widgets/shared/ArtisDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _LandingState extends State<LandingNoLogged> {
         Padding(
           padding: EdgeInsets.only(top: 15, bottom: 10),
           child: Text(
-            'Accesos',
+            AppLang.of(context).trans('landingAccess'),
             textAlign: TextAlign.center, 
             style: TextStyle(
               fontSize: 14, color: Theme.of(context).primaryColor, 
@@ -48,8 +49,8 @@ class _LandingState extends State<LandingNoLogged> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _buildAccessItem('Eventos', Icons.calendar_today),
-            _buildAccessItem('Ruta del café', Icons.wrap_text),
+            _buildAccessItem(AppLang.of(context).trans('landingItemsEvents'), Icons.calendar_today),
+            _buildAccessItem(AppLang.of(context).trans('landingItemsTheCoffeeRoute'), Icons.wrap_text),
           ],
         ),
         SizedBox(height: 20,),
@@ -58,7 +59,7 @@ class _LandingState extends State<LandingNoLogged> {
             Navigator.pushNamed(context, '/createUser');
           },
           child: Text(
-            'Crear un usuario', 
+            AppLang.of(context).trans('landingNoLoggedCreateUser'), 
             textAlign: TextAlign.center,
             style: TextStyle(              
               fontSize: 18, color: Theme.of(context).primaryColor, 
@@ -143,7 +144,7 @@ class _LandingState extends State<LandingNoLogged> {
         Padding(
           padding: EdgeInsets.only(top: 4),
           child: Text(
-            '# catas', 
+            AppLang.of(context).trans('landingNumberTastings'), 
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.w100
@@ -176,7 +177,7 @@ class _LandingState extends State<LandingNoLogged> {
               Padding(
                 padding: EdgeInsets.all(0),
                 child: Text(
-                  '# catas', 
+                  AppLang.of(context).trans('landingNumberTastings'), 
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w100
@@ -199,7 +200,7 @@ class _LandingState extends State<LandingNoLogged> {
               Padding(
                 padding: EdgeInsets.only(top: 5),
                 child: Text(
-                  'Experiences', 
+                  AppLang.of(context).trans('landingNumberExperiences'), 
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w100
@@ -222,7 +223,7 @@ class _LandingState extends State<LandingNoLogged> {
               Padding(
                 padding: EdgeInsets.only(top: 5),
                 child: Text(
-                  'Formations', 
+                  AppLang.of(context).trans('landingNumberFormations'),
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w100
@@ -369,7 +370,7 @@ class _LandingState extends State<LandingNoLogged> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
             child: Text(
-              'Coffe Lovers', 
+              AppLang.of(context).trans('landingCoffeeLovers'), 
               style: TextStyle(
                 fontSize: 14, color: Theme.of(context).primaryColor, 
                 fontStyle: FontStyle.italic, 
@@ -399,7 +400,7 @@ class _LandingState extends State<LandingNoLogged> {
   Widget _buildBaristasList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
-      height: 160,
+      height: 170,
       child: Column(
         children: <Widget>[
           Padding(
@@ -435,13 +436,13 @@ class _LandingState extends State<LandingNoLogged> {
   Widget _buildCoffeeShopsList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
-      height: 260,
+      height: 270,
       child: Column(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              'Coffee shops', 
+              AppLang.of(context).trans('landingCoffeeShop'), 
               style: TextStyle(
                 fontSize: 14, color: Theme.of(context).primaryColor, 
                 fontStyle: FontStyle.italic, 
@@ -471,13 +472,13 @@ class _LandingState extends State<LandingNoLogged> {
   Widget _buildRoastersList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
-      height: 280,
+      height: 290,
       child: Column(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              'Coffee roasters', 
+              AppLang.of(context).trans('landingCoffeeRoasters'),
               style: TextStyle(
                 fontSize: 14, color: Theme.of(context).primaryColor, 
                 fontStyle: FontStyle.italic, 
@@ -507,7 +508,7 @@ class _LandingState extends State<LandingNoLogged> {
     key: _keyScaffoldLandigNoLogged,
      backgroundColor: Theme.of(context).backgroundColor,
      appBar: AppBar(
-       title: Text('Usuario no logueado'),
+       title: Text(AppLang.of(context).trans('landingUserNotLoggedIn')),
        centerTitle: true,
      ),
      body: ListView(

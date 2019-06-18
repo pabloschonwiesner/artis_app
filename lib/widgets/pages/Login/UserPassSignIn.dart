@@ -1,3 +1,6 @@
+import 'package:artis_app/blocs/blocLogin.dart';
+import 'package:artis_app/locale/AppLang.dart';
+import 'package:artis_app/models/UserModel.dart';
 import 'package:flutter/material.dart';
 import 'package:artis_app/utils/validators.dart';
 
@@ -36,12 +39,12 @@ class _UserPassSignInState extends State<UserPassSignIn> {
     return showDialog(      
       context: context,
       builder: (context) => AlertDialog(     
-        title: Text('Recuperar Contraseña'),
+        title: Text(AppLang.of(context).trans('userPassSignInRecoverPass')),
         content: Container(
           height: 85,
           child: Column(          
             children: <Widget>[
-              Text('Ingrese su email'),
+              Text(AppLang.of(context).trans('userPassSignInEnterYourEmail')),
               Form(
                 key: _keyFormSignIn,
                 child: TextFormField(
@@ -58,12 +61,12 @@ class _UserPassSignInState extends State<UserPassSignIn> {
         actions: <Widget>[
           RaisedButton(
             color: Theme.of(context).backgroundColor,
-            child: Text('Cancelar', style: TextStyle(color: Theme.of(context).primaryColor)),
+            child: Text(AppLang.of(context).trans('userPassSignInCancel'), style: TextStyle(color: Theme.of(context).primaryColor)),
             onPressed: _cancelarRecoverPass,
           ),
           RaisedButton(
             color: Theme.of(context).primaryColor,
-            child: Text('Aceptar', style: TextStyle(color: Theme.of(context).backgroundColor)),
+            child: Text(AppLang.of(context).trans('userPassSignInAgree'), style: TextStyle(color: Theme.of(context).backgroundColor)),
             onPressed: _aceptarRecoverPass,
           ),
           
@@ -82,12 +85,12 @@ class _UserPassSignInState extends State<UserPassSignIn> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
                 controller: _userController,
-                validator: (String value) => validateUser(value),
+                validator: (String value) => validateEmail(value),
                 decoration: InputDecoration(
-                  labelText: 'User',                 
+                  labelText: AppLang.of(context).trans('userPassSignInUser'),                 
                 ),                
               ),
               // SizedBox(height: 10,){}
@@ -98,7 +101,7 @@ class _UserPassSignInState extends State<UserPassSignIn> {
                 validator: (String value) => validatePass(value),
                 controller: _passController,
                 decoration: InputDecoration(
-                  labelText: 'Pass',
+                  labelText: AppLang.of(context).trans('userPassSignInPass'),
                 )
               ),
             ],
@@ -110,7 +113,7 @@ class _UserPassSignInState extends State<UserPassSignIn> {
                 print('¿Olvidó su contraseña?');
                 _alertDialogRecoverPass();
               },
-              child: Text('¿Olvidó su contraseña?', style: TextStyle(color: Theme.of(context).primaryColor)),
+              child: Text(AppLang.of(context).trans('userPassSignInForgotPassword'), style: TextStyle(color: Theme.of(context).primaryColor)),
             ),
         SizedBox(height: 5,),
         Row(
@@ -118,11 +121,13 @@ class _UserPassSignInState extends State<UserPassSignIn> {
           children: <Widget>[
             RaisedButton(
               elevation: 15,
-              child: Text('Sign In'),
+              child: Text(AppLang.of(context).trans('userPassSignIn')),
               onPressed: () {
                 
                 if(_keyFormUserSignIn.currentState.validate()) {
                   print('Sign in');
+                  blocLogin.changeLogged(true);
+                  blocLogin.changeUser(UserModel(id: '1', origen: 'userPass', nombre: '', apellido: '', email: _userController.text));
                   // aca tiene que redirigir a las landin pages que corresponda
                   Navigator.pushNamed(context, '/landingLogged');
                 } else {
@@ -133,7 +138,7 @@ class _UserPassSignInState extends State<UserPassSignIn> {
             RaisedButton(
               elevation: 15,
               color: Theme.of(context).backgroundColor,
-              child: Text('Sign up', style: TextStyle(color: Theme.of(context).primaryColor)),
+              child: Text(AppLang.of(context).trans('userPassSignUp'), style: TextStyle(color: Theme.of(context).primaryColor)),
               onPressed: () {
                 print('Sign Up');
                 Navigator.pushNamed(context, '/createUser');

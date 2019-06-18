@@ -1,3 +1,4 @@
+import 'package:artis_app/locale/AppLang.dart';
 import 'package:flutter/material.dart';
 
 
@@ -10,7 +11,7 @@ class ArtisIso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Artis Coffee', 
+      AppLang.of(context).trans('artisIso'), 
       style: TextStyle(color: Theme.of(context).primaryColor, 
         fontSize: aFontSize,
         fontFamily: 'Nexa',

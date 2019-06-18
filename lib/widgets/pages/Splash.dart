@@ -1,8 +1,10 @@
 import 'package:artis_app/blocs/blocLogin.dart';
+import 'package:artis_app/models/UserModel.dart';
 import 'package:flutter/material.dart';
 import 'package:artis_app/widgets/pages/Login/Login.dart';
 import 'package:artis_app/widgets/shared/ArtisLogo.dart';
 import 'package:artis_app/widgets/shared/ArtisIso.dart';
+import 'package:artis_app/utils/sharedPreferencesArtis.dart';
 
 /// Clase que crea la pantalla de Splash que se utliza al iniciar la app
 class Splash extends StatefulWidget {
@@ -15,14 +17,14 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();    
-    blocLogin.isLogged.listen((data) {
-      if(data==true) {
-        Navigator.pushNamed(context, '/landingLogged');
+    UserModel userSession = getSession();
+    Future.delayed(Duration(seconds: 2), () {
+      if(userSession.email.isNotEmpty) {
+         Navigator.pushNamed(context, '/login');
       } else {
-        Navigator.pushNamed(context, '/login');
+        Navigator.pushNamed(context, '/landingLogged');
       }
-    });
-    
+    });    
   }
 
   @override

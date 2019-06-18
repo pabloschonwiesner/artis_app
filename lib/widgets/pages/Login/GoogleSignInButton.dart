@@ -1,4 +1,5 @@
 import 'package:artis_app/blocs/blocLogin.dart';
+import 'package:artis_app/locale/AppLang.dart';
 import 'package:artis_app/models/UserModel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -58,7 +59,7 @@ class GoogleSignInButton extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               child: Text(
-                'Sign in with Google', 
+                AppLang.of(context).trans('googleSignIn'), 
                 style: TextStyle(
                   fontSize: 15, 
                   color: Colors.white
@@ -70,7 +71,14 @@ class GoogleSignInButton extends StatelessWidget {
       ),
       onPressed: () {
         print('Google');
-        _handleSignIn(context);
+        blocLogin.isLogged.listen((data) {
+          if(data==false) {
+            _handleSignIn(context);
+          } else {
+            Navigator.pushNamed(context, '/landingLogged');
+          }
+        });
+        
       },
     );
   }

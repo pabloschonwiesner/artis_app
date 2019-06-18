@@ -1,4 +1,5 @@
 import 'package:artis_app/blocs/blocLogin.dart';
+import 'package:artis_app/locale/AppLang.dart';
 import 'package:artis_app/widgets/shared/ArtisDrawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,11 +47,11 @@ class _LandingState extends State<LandingLogged> {
     // ? <Widget>[Center(child: CircularProgressIndicator())]
     // : items.map((item) => _buildAccessItem(item)).toList(),
     items: <Widget>[
-    _buildAccessItem('Mi Perfil', Icons.person),
-          _buildAccessItem('Noticias', Icons.new_releases),
-          _buildAccessItem('Mensajes', Icons.sms),
-          _buildAccessItem('Eventos', Icons.calendar_today),
-          _buildAccessItem('Ruta del café', Icons.wrap_text),
+    _buildAccessItem(AppLang.of(context).trans('landingItemsProfile'), Icons.person),
+          _buildAccessItem(AppLang.of(context).trans('landingItemsNews'), Icons.new_releases),
+          _buildAccessItem(AppLang.of(context).trans('landingItemsMessages'), Icons.sms),
+          _buildAccessItem(AppLang.of(context).trans('landingItemsEvents'), Icons.calendar_today),
+          _buildAccessItem(AppLang.of(context).trans('landingItemsTheCoffeeRoute'), Icons.wrap_text),
     ],
     autoPlay: false,
     height: 150,
@@ -116,7 +117,7 @@ class _LandingState extends State<LandingLogged> {
         Padding(
           padding: EdgeInsets.only(top: 4),
           child: Text(
-            '# catas', 
+            AppLang.of(context).trans('landingNumberTastings'), 
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.w100
@@ -149,7 +150,7 @@ class _LandingState extends State<LandingLogged> {
               Padding(
                 padding: EdgeInsets.all(0),
                 child: Text(
-                  '# catas', 
+                  AppLang.of(context).trans('landingNumberTastings'), 
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w100
@@ -172,7 +173,7 @@ class _LandingState extends State<LandingLogged> {
               Padding(
                 padding: EdgeInsets.only(top: 5),
                 child: Text(
-                  'Experiences', 
+                  AppLang.of(context).trans('landingNumberExperiences'),  
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w100
@@ -195,7 +196,7 @@ class _LandingState extends State<LandingLogged> {
               Padding(
                 padding: EdgeInsets.only(top: 5),
                 child: Text(
-                  'Formations', 
+                  AppLang.of(context).trans('landingNumberFormations'), 
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.w100
@@ -342,7 +343,7 @@ class _LandingState extends State<LandingLogged> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
             child: Text(
-              'Coffe Lovers', 
+              AppLang.of(context).trans('landingCoffeeLovers'), 
               style: TextStyle(
                 fontSize: 14, color: Theme.of(context).primaryColor, 
                 fontStyle: FontStyle.italic, 
@@ -372,7 +373,7 @@ class _LandingState extends State<LandingLogged> {
   Widget _buildBaristasList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
-      height: 160,
+      height: 170,
       child: Column(
         children: <Widget>[
           Padding(
@@ -408,13 +409,13 @@ class _LandingState extends State<LandingLogged> {
   Widget _buildCoffeeShopsList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
-      height: 260,
+      height: 270,
       child: Column(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              'Coffee shops', 
+              AppLang.of(context).trans('landingCoffeeShop'),  
               style: TextStyle(
                 fontSize: 14, color: Theme.of(context).primaryColor, 
                 fontStyle: FontStyle.italic, 
@@ -444,13 +445,13 @@ class _LandingState extends State<LandingLogged> {
   Widget _buildRoastersList() {
     return Container(
       padding: EdgeInsets.only(left: 10),
-      height: 280,
+      height: 290,
       child: Column(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              'Coffee roasters', 
+              AppLang.of(context).trans('landingCoffeeRoasters'), 
               style: TextStyle(
                 fontSize: 14, color: Theme.of(context).primaryColor, 
                 fontStyle: FontStyle.italic, 
@@ -480,7 +481,7 @@ class _LandingState extends State<LandingLogged> {
     key: _keyScaffoldLandigLogged,
      backgroundColor: Theme.of(context).backgroundColor,
      appBar: AppBar(
-       title: Text('Panel del usuario'),
+       title: Text(AppLang.of(context).trans('landingUserPanel')),
        centerTitle: true,
      ),
      body: NestedScrollView(
@@ -493,7 +494,7 @@ class _LandingState extends State<LandingLogged> {
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Accesos', 
+                    AppLang.of(context).trans('landingAccess'), 
                     style: TextStyle(
                       fontSize: 14, color: Theme.of(context).primaryColor, 
                       fontStyle: FontStyle.italic, 

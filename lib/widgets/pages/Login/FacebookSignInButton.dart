@@ -1,3 +1,4 @@
+import 'package:artis_app/locale/AppLang.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:http/http.dart' as http;
@@ -28,16 +29,19 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
   /// los guarda en blocLogin y redirige a la pantalla de inicio de todo usuario logueado.
   void initiateFacebookLogin() async {
     var facebookLogin = FacebookLogin();
+    facebookLogin.loginBehavior = FacebookLoginBehavior.nativeWithFallback;
     var facebookLoginResult =
         await facebookLogin.logInWithReadPermissions(['email']);
     switch (facebookLoginResult.status) {
       case FacebookLoginStatus.error:
         print("Error");
         onLoginStatusChanged(false);
+        // Navigator.pushNamed(context, '/login');
         break;
       case FacebookLoginStatus.cancelledByUser:
         print("CancelledByUser");
         onLoginStatusChanged(false);
+        // Navigator.pushNamed(context, '/login');
         break;
       case FacebookLoginStatus.loggedIn:
         print("LoggedIn");
@@ -82,7 +86,7 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
               child: Container(
                   alignment: Alignment.center,
                   child: Text(
-                    'Sign in with Facebook',
+                    AppLang.of(context).trans('facebookSignIn'),
                     style: TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.center,
                   )))
@@ -90,7 +94,13 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
       ),
       onPressed: () {
         print('facebook');
-        initiateFacebookLogin();
+        blocLogin.isLogged.listen((data) {
+          if(data==false) {
+            initiateFacebookLogin();
+          } else {
+            Navigator.pushNamed(context, '/landingLogged');
+          }
+        });
       },
     );
   }

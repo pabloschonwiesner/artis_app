@@ -1,3 +1,4 @@
+import 'package:artis_app/locale/AppLang.dart';
 import 'package:flutter/material.dart';
 import 'package:artis_app/widgets/pages/Login/FacebookSignInButton.dart';
 import 'package:artis_app/widgets/pages/Login/GoogleSignInButton.dart';
@@ -46,7 +47,7 @@ class Login extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 60),
-                  child: Text('Entrar como invitado', style: TextStyle(color: Theme.of(context).primaryColor))
+                  child: Text(AppLang.of(context).trans('loginEnterAsAGuest'), style: TextStyle(color: Theme.of(context).primaryColor))
                 ),
               )
             ],

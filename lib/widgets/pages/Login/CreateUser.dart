@@ -1,3 +1,6 @@
+import 'package:artis_app/blocs/blocLoginProvider.dart';
+import 'package:artis_app/locale/AppLang.dart';
+import 'package:artis_app/models/UserModel.dart';
 import 'package:artis_app/widgets/shared/ArtisDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:artis_app/widgets/shared/ArtisLogo.dart';
@@ -89,6 +92,8 @@ class _CreateUserState extends State<CreateUser> {
     - ${_emailController.text} - ${_passwordController.text} - ${_birthdateController.text} - ${_facebookController.text} - ${_instagramController.text} - ${_twitterController.text}""";
     _keyScaffoldCreateUser.currentState.showSnackBar(SnackBar(content: Text(texto)));
      Navigator.pushNamed(context, '/landingLogged');
+     blocLogin.changeLogged(true);
+     blocLogin.changeUser(UserModel(id: '1', origen: 'userPass', nombre: _nameController.text, apellido: _surnameController.text, email: _emailController.text ));
   } 
 
   /// Función que valida el formulario
@@ -112,7 +117,7 @@ class _CreateUserState extends State<CreateUser> {
   return Scaffold(
     key: _keyScaffoldCreateUser,
     appBar: AppBar(
-      title: Text('Crear usuario'),
+      title: Text(AppLang.of(context).trans('createUser')),
     ),
     body: ListView(
       children: <Widget>[        
@@ -135,7 +140,7 @@ class _CreateUserState extends State<CreateUser> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       icon: Icon(Icons.person),
-                      labelText: 'Name',                      
+                      labelText: AppLang.of(context).trans('createUserName'),                      
                     ),
                     validator: (String value) => validateUser(value),
                   ),
@@ -144,7 +149,7 @@ class _CreateUserState extends State<CreateUser> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       icon: Icon(Icons.calendar_today, color: Colors.white),
-                      labelText: 'Surname',
+                      labelText: AppLang.of(context).trans('createUserSurname'),
                     ),
                     validator: (String value) => validateSurname(value),
                   ),
@@ -153,14 +158,14 @@ class _CreateUserState extends State<CreateUser> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       icon: Icon(Icons.calendar_today, color: Colors.white),
-                      labelText: 'Pseudonym'
+                      labelText: AppLang.of(context).trans('createPseudonym'),
                     ),
                   ),
                   DropdownButtonFormField(
                     value: _selectionCountry,
                     decoration: InputDecoration(
                       icon: Icon(Icons.location_on),
-                      labelText: 'Country'
+                      labelText: AppLang.of(context).trans('createCountry')
                     ),
                     onChanged: (newValue) {
                       setState((){
@@ -179,7 +184,7 @@ class _CreateUserState extends State<CreateUser> {
                     value: _selectionLanguage,
                     decoration: InputDecoration(
                       icon: Icon(Icons.language),
-                      labelText: 'Language'
+                      labelText: AppLang.of(context).trans('createLanguage')
                     ),
                     onChanged: (newValue) {
                       setState((){
@@ -199,7 +204,7 @@ class _CreateUserState extends State<CreateUser> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       icon: Icon(Icons.work),
-                      labelText: 'Occupation'
+                      labelText: AppLang.of(context).trans('createOccupation')
                     ),
                   ),
                   TextFormField(
@@ -207,7 +212,7 @@ class _CreateUserState extends State<CreateUser> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       icon: Icon(Icons.alternate_email),
-                      labelText: 'E-Mail'
+                      labelText: AppLang.of(context).trans('createEMail')
                     ),
                     validator: (String value) => validateEmail(value),
                   ),
@@ -217,7 +222,7 @@ class _CreateUserState extends State<CreateUser> {
                     obscureText: true,
                     decoration: InputDecoration(
                       icon: Icon(Icons.vpn_key),
-                      labelText: 'Password'
+                      labelText: AppLang.of(context).trans('createPassword')
                     ),
                     validator: (String value) => validatePass(value),
                   ),                  
@@ -229,7 +234,7 @@ class _CreateUserState extends State<CreateUser> {
                       child: TextFormField(
                         decoration: InputDecoration(
                           icon: Icon(Icons.calendar_today),
-                          labelText: 'Birthdate'),
+                          labelText: AppLang.of(context).trans('createBirthdate')),
                         controller: _birthdateController,
                         validator: (String value) => validateDate(value)
                       ),
@@ -263,7 +268,7 @@ class _CreateUserState extends State<CreateUser> {
                     height: 40,
                   ),
                   RaisedButton(
-                    child: Text('Save profile'),
+                    child: Text(AppLang.of(context).trans('createSaveProfile')),
                     onPressed: _validateFormUser
                   ),
                   SizedBox(

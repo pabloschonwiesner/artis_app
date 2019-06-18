@@ -1,4 +1,6 @@
 import 'package:artis_app/blocs/blocLogin.dart';
+import 'package:artis_app/locale/AppLang.dart';
+import 'package:artis_app/models/UserModel.dart';
 import 'package:flutter/material.dart';
 
 
@@ -25,35 +27,35 @@ class ArtisDrawer extends StatelessWidget {
       children: <Widget>[
         ListTile(
           title: Text(
-            'Mi Perfil', 
+            AppLang.of(context).trans('landingItemsProfile'), 
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
           leading: Icon(Icons.person, color: Theme.of(context).primaryColor,),
         ),
         ListTile(
           title: Text(
-            'Noticias', 
+            AppLang.of(context).trans('landingItemsNews'), 
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
           leading: Icon(Icons.new_releases, color: Theme.of(context).primaryColor),
         ),
         ListTile(
           title: Text(
-            'Mensajes', 
+            AppLang.of(context).trans('landingItemsMessages'), 
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
           leading: Icon(Icons.sms, color: Theme.of(context).primaryColor),
         ),
         ListTile(
           title: Text(
-            'Eventos', 
+            AppLang.of(context).trans('landingItemsEvents'), 
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
           leading: Icon(Icons.calendar_today, color: Theme.of(context).primaryColor),
         ),
         ListTile(
           title: Text(
-            'La Ruta del Café', 
+            AppLang.of(context).trans('landingItemsTheCoffeeRoute'), 
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
           leading: Icon(Icons.wrap_text, color: Theme.of(context).primaryColor),
@@ -71,14 +73,14 @@ class ArtisDrawer extends StatelessWidget {
       children: <Widget>[
         ListTile(
           title: Text(
-            'Eventos', 
+            AppLang.of(context).trans('landingItemsEvents'), 
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
           leading: Icon(Icons.calendar_today, color: Theme.of(context).primaryColor),
         ),
         ListTile(
           title: Text(
-            'La Ruta del Café', 
+            AppLang.of(context).trans('landingItemsTheCoffeeRoute'),  
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
           leading: Icon(Icons.wrap_text, color: Theme.of(context).primaryColor),
@@ -111,10 +113,14 @@ class ArtisDrawer extends StatelessWidget {
         Expanded(child: Container()),
         ListTile(title: 
           Text(
-            'Cerrar Sesión', 
+            AppLang.of(context).trans('drawerSignOff'),  
             style: TextStyle(color: Theme.of(context).primaryColor)
           ),
-          leading: Icon(Icons.exit_to_app, color: Theme.of(context).primaryColor)
+          leading: Icon(Icons.exit_to_app, color: Theme.of(context).primaryColor),
+          onTap: () {
+            blocLogin.changeLogged(false);
+            blocLogin.changeUser(UserModel(id: '', origen: '', nombre: '', apellido: '', email: ''));
+          },
         )
       ],
     );
